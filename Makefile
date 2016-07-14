@@ -11,4 +11,4 @@ publish: build
 	if [ "${TAG}" != "" -a "${TAG}" != "latest" ]; then docker tag ${IMG}:latest ${IMG}:${TAG} && docker push ${IMG}:${TAG}; fi
 
 test: build
-	docker run -it --rm ${IMG}:${TAG} bash -c "zkServer.sh start; zkCli.sh stat /zookeeper"
+	docker run -it --rm ${IMG}:latest bash -c "zkServer.sh start; zkCli.sh stat /zookeeper"
