@@ -8,8 +8,8 @@ build:
 	docker build -t ${IMG}:${TAG}	.
 
 publish: build
-	docker push ${IMG}:${TAG}
-	@if [ "${TAG}" != "latest" ]; then docker tag ${IMG}:${TAG} ${IMG}:latest && docker push ${IMG}:latest; fi
+	docker push ${IMG}:latest
+	if [ "${TAG}" != "" -a "${TAG}" != "latest" ]; then docker tag ${IMG}:latest ${IMG}:${TAG} && docker push ${IMG}:${TAG}; fi
 
 test: build
 	docker run -it --rm ${IMG}:${TAG} bash -c "zkServer.sh start; zkCli.sh stat /zookeeper"
