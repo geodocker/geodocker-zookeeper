@@ -2,10 +2,9 @@ BASE := $(subst -, ,$(notdir ${CURDIR}))
 ORG  := $(word 1, ${BASE})
 REPO := $(word 2, ${BASE})
 IMG  := quay.io/${ORG}/${REPO}
-TAG  := latest
 
 build:
-	docker build -t ${IMG}:${TAG}	.
+	docker build -t ${IMG}:latest	.
 
 publish: build
 	docker push ${IMG}:latest
